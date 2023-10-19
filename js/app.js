@@ -119,7 +119,6 @@ function mostrarDatosUsuarioNuevo(newUser) {
     loginContainer.style.display = "block";
 
   });
-
 }
 
 // ----------- SIMULADOR
@@ -274,16 +273,22 @@ registrarButton.addEventListener("click", () => {
 
     const newUser = new User("password", persona);
 
+    // Mostrar un mensaje de registro exitoso y ocultar el formulario
+    // registroExitoso.style.display = "block";
+    registrationForm.style.display = "none";
+    dataContainer.style.display = "block";
+
     // Agregar el nuevo usuario a la lista de usuarios
     usuarios.agregarUsuario(newUser);
     guardarUsuariosEnLocalStorage(usuarios);
 
     // Mostrar los datos de la nueva persona
-    mostrarDatosUsuario(newUser);
-
-    // Mostrar un mensaje de registro exitoso y ocultar el formulario
-    registroExitoso.style.display = "block";
-    registrationForm.style.display = "none";
+    mostrarDatosUsuario(newUser.Persona);
+    Toastify({
+      text: "Sesión iniciada.",
+      backgroundColor: "green",
+      close: true,
+    }).showToast();
 
   } else {
     alert("Por favor, complete todos los campos.");
